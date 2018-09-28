@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('status')
+@section('content')
+
+<h1>id = {{ $task->id }} のタスク詳細ページ</h1>
+
 
 <table class="table table-bordered">
         <tr>
@@ -8,8 +11,8 @@
             <td>{{ $task->id }}</td>
         </tr>
         <tr>
-            <th>タイトル</th>
-            <td>{{ $task->title }}</td>
+            <th>ステータス</th></th>
+            <td>{{ $task->status }}</td>
         </tr>
         <tr>
             <th>メッセージ</th>
@@ -17,7 +20,7 @@
         </tr>
     </table>
     
-    {!! link_to_route('tasks.edit', 'このメッセージを編集', ['id' => $task->id], ['class' => 'btn btn-default']) !!}
+    {!! link_to_route('tasks.edit', 'このタスクを編集', ['id' => $task->id], ['class' => 'btn btn-default']) !!}
     
     {!! Form::model($task, ['route' => ['tasks.destroy', $task->id], 'method' => 'delete']) !!}
         {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
