@@ -24,7 +24,7 @@ class UsersController extends Controller
 
         $data = [
             'user' => $user,
-            'microposts' => $microposts,
+            'tasks' => $tasks,
         ];
         
         
@@ -32,4 +32,4 @@ class UsersController extends Controller
 
         return view('users.show', $data);
         
-    }
+    }}

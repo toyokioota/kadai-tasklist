@@ -131,11 +131,11 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        $micropost = \App\Micropost::find($id);
+        $task = \App\Task::find($id);
 
-        if (\Auth::id() === $micropost->user_id) {
-            $micropost->delete();
+        if (\Auth::id() === $task->user_id) {
+            $task->delete();
         }
 
-        return redirect()->back();
+        return redirect('/');
 }}
