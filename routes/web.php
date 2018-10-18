@@ -14,7 +14,8 @@
 Route::get('/', 'TasksController@index');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('tasks', 'TasksController');
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
 });
 
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
