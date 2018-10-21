@@ -14,8 +14,16 @@
 Route::get('/', 'TasksController@index');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
-    Route::resource('tasks', 'TasksController');
+        Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+        Route::resource('tasks', 'TasksController');
+        Route::group(['prefix' => 'users/{id}'], function () {
+        Route::post('follow', 'UserFollowController@store')->name('user.follow');
+        Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
+        Route::get('followings', 'UsersController@followings')->name('users.followings');
+        Route::get('followers', 'UsersController@followers')->name('users.followers');
+    });
+
+    Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
 });
 
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
